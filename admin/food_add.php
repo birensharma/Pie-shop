@@ -82,7 +82,7 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Unique Restaurant</title>
+	<title>Admin Panel</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -119,7 +119,7 @@
     	<?php require "includes/side_wrapper.php"; ?>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed" style="background: #FF5722;">
+        <nav class="navbar navbar-default navbar-fixed" style="background: #2196f3;">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -163,10 +163,10 @@
                                                 <label style="color: #333">category</label>
                                                 <select name="category" class="form-control" required />
 													<option value="">Select food category</option>
-													<option value="breakfast">Breakfast</option>
-													<option value="lunch">Lunch</option>
-													<option value="dinner">Dinner</option>
-													<option value="special">Special</option>
+													<option value="crust">crust</option>
+													<option value="cream">cream</option>
+													<option value="fillings">fillings</option>
+													<option value="special">special</option>
 												</select>
                                             </div>
                                         </div>
@@ -209,7 +209,7 @@
 										
 									</div>
 									
-                                    <input type="submit" name="submit" style="background: #FF5722; border: 1px solid #FF5722" value="Save Food" class="btn btn-info btn-fill pull-right" />
+                                    <input type="submit" name="submit" value="Save Food" class="btn btn-success btn-fill pull-right" />
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -248,8 +248,6 @@
 
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
     
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="assets/js/light-bootstrap-dashboard.js"></script>

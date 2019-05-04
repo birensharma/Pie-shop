@@ -110,7 +110,7 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Unique Restaurant</title>
+	<title>Admin Panel</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -158,7 +158,7 @@
     	<?php require "includes/side_wrapper.php"; ?>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed" style="background: #FF5722;">
+        <nav class="navbar navbar-default navbar-fixed" style="background: #2196f3;">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -173,7 +173,9 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="logout.php" style="color: #fff;">
+							<a href="logout.php" 
+							style="color: #fff; background-color:red;font-weight:800"
+							class="badge">
                                 Log out
                             </a>
                         </li>
@@ -261,9 +263,9 @@
             },{
                 type: 'danger',
                 timer: 7000
-            });
+            });*/
 
-    	});*/
+    	});
 	</script>
 
 </html>
