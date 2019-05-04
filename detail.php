@@ -72,8 +72,13 @@
 <meta name="keywords" content="" />
 
 <head>
-	
-<title>MFORS</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<title>PieShop</title>
 
 <link rel="stylesheet" href="css/main.css" />
 
@@ -121,7 +126,7 @@
 						<h3 class="desc_header"><?php echo $name; ?></h3>
 						<p class="desc_detail"><?php echo $desc; ?> </p>
 						<p><span class="bold_desc">Category:</span> <?php echo $cat; ?></p>
-						<p><span class="bold_desc price">Price:</span> #<span id="price"><?php echo $price; ?></span></p>
+						<p><span class="bold_desc price">Price:</span> ₹<span id="price"><?php echo $price; ?></span></p>
 						<div class="form_group">
 							
 							<p><span class="bold_desc">Quantity:</span></p>
@@ -129,11 +134,11 @@
 							
 						</div>
 						
-						<p><span class="bold_desc">Total Pri	ce:</span> #<span id="total_price"><?php echo $price; ?></span></p>
+						<p><span class="bold_desc">Total Price:</span> ₹<span id="total_price"><?php echo $price; ?></span></p>
 						
 						<div class="form_group">
 							<input type="hidden" name="fid" value="<?php echo $id; ?>">
-							<input type="submit" name="submit" class="submit add_order" value="Add to Order" />
+							<input type="submit" name="submit" class="btn btn-primary" value="Add to Order" />
 							
 						</div>
 						
@@ -151,7 +156,11 @@
 	
 </div>
 
-<div class="on_footer_parallax">
+<div class="footer_parallax" onclick="remove_class()">
+
+
+
+		<div class="on_footer_parallax">
 			<div class="content_footer" onclick="remove_class()">
 
 				<div class="inner_content">
@@ -191,6 +200,7 @@
 			</div>
 
 		</div>
+
 </body>
 
 </html>

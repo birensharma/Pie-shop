@@ -1,146 +1,125 @@
-<?php
-
-session_start();
-require "admin/includes/functions.php";
-require "admin/includes/db.php";
-
-$get_recent = $db->query("SELECT * FROM food LIMIT 9");
-
-$result = "";
-
-if ($get_recent->num_rows) {
-
-	while ($row = $get_recent->fetch_assoc()) {
-
-		$result .= "<div class='parallax_item'>
-				
-							<a href='detail.php?fid=" . $row['id'] . "'><img src='image/FoodPics/" . $row['id'] . ".jpg' width='80px' height='80px' /> 
-							<div class='detail'>
-								
-								<h4>" . $row['food_name'] . "</h4>
-								<p class='desc'>" . substr($row['food_description'], 0, 33) . "...</p>
-								<p class='price'>#" . $row['food_price'] . "</p>
-								
-							</div>
-							<p class='clear'></p>
-							</a>
-							
-						</div>";
-	}
-} else { }
-
-?>
-
-<!Doctype html>
-
-<html lang="en">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<meta name="description" content="" />
-
-<meta name="keywords" content="" />
+<!DOCTYPE html>
+<html>
 
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      background-image: url('./image/dish_2.jpg');
+      justify-content: center;
+      align-items: center;
+    }
 
-	<title>PieShop</title>
+    .jumbotron {
+      margin: 30px;
+      background: rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
 
-	<link rel="stylesheet" href="css/main.css" />
+    .container div:first-child {
+      margin-top: 100px;
+      background-color: rgba(0, 0, 0, 0.5)
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyBHJ9vrRyAd034N9gZk1bBalIqd67ZEA84",
+      authDomain: "localpieshop.firebaseapp.com",
+      databaseURL: "https://localpieshop.firebaseio.com",
+      projectId: "localpieshop",
+      storageBucket: "localpieshop.appspot.com",
+      messagingSenderId: "460778532674"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <meta charset="UTF-8">
+  <title>Pie Shop</title>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.6.0/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.6.0/firebaseui.css" />
 
-	<script src="js/jquery.min.js"></script>
+  <script type="text/javascript">
+    var uiConfig = {
+      signInSuccessUrl: 'dashboard.php',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      ],
+      tosUrl: '<your-tos-url>',
+      privacyPolicyUrl: () => {
+        window.location.assign('<your-privacy-policy-url>');
+      }
+    };
 
-	<script src="js/myscript.js"></script>
-
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-auth-container', uiConfig);
+  </script>
 </head>
 
 <body>
 
-	<?php require "includes/header.php"; ?>
+  <div class="jumbotron text-light">
+    <h1>WELCOME TO PIE SHOP</h1><br><br>
+    <div id="firebaseui-auth-container"> </div>
+    <br><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+      Sign Up
+    </button>
+  </div>
 
-	<div class="parallax" onclick="remove_class()">
-
-		<div class="parallax_head">
-
-			<h2>Welcome</h2>
-			<h3>We are Excited to Cook for You</h3>
-
-		</div>
-
-	</div>
-
-
-
-	<div class="content remove_pad" onclick="remove_class()">
-
-		<div class="inner_content on_parallax">
-
-			<h2><span class="fresh">Discover Fresh Menu</span></h2>
-
-			<div class="parallax_content">
-
-				<?php echo $result; ?>
-
-				<p class="clear"></p>
-
-			</div>
-
-		</div>
-
-	</div>
-
-
-	<div class="content" onclick="remove_class()">
-
-		<a href="reservation.php" class="submit">BOOK A TABLE</a>
-
-	</div>
-
-
-	<div class="footer_parallax" onclick="remove_class()">
-
-
-
-		<div class="on_footer_parallax">
-			<div class="content_footer" onclick="remove_class()">
-
-				<div class="inner_content">
-
-					<div class="contact">
-
-						<div class="left">
-
-							<h3>LOCATION</h3>
-							<p>Niit University</p>
-							<p>NH 8, Delhi- Jaipur Highway, District Alwar, Neemrana, Rajasthan 301705</p>
-
-						</div>
-
-						<div class="left">
-
-							<h3>CONTACT</h3>
-							<p>9928115635</p>
-							<p>local.pieshop@yahoo.com</p>
-
-						</div>
-					</div>
-
-				</div>
-
-				<div class="footer_copyright">
-					<div>
-						<p>&copy; <?php echo strftime("%Y", time()); ?> <span>MyRestaurant</span>. All Rights Reserved</p>
-					</div>
-					<div class="icon_holder">
-						<a href="#"><img src="image/icons/Facebook.png" alt="image/icons/Facebook.png" /></a>
-						<a href="#"><img src="image/icons/Google+.png" alt="image/icons/Google+.png" /></a>
-						<a href="#"><img src="image/icons/Twitter.png" alt="image/icons/Twitter.png" /></a>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-
+  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modlabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sign Up for our Pie Shop</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="firebaseSignupForm" method="post">
+            <div class="form-group">
+              <label for="femail">Email address</label>
+              <input type="email" class="form-control" id="femail" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <p id="errmsg" class="text-danger"></p>
+            <button type="submit" class="btn btn-primary float-right" data-dismiss="alert" id="submitbtn">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;position:absolute;top:0;">
+    <strong>Success!</strong> Sign Up Suceessful
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 </body>
+<script>
+  let sbtn = document.getElementById('submitbtn')
+
+  sbtn.onclick = e => {
+    e.preventDefault()
+    firebase.auth().createUserWithEmailAndPassword(e.path[1][0].value, e.path[1][1].value)
+      .then(v => {
+        $(".alert").css('display', 'block').alert()
+        $('#modal').modal('toggle')
+      })
+      .catch(error => {
+        $('#errmsg').text(error.message)
+      });
+  }
+</script>
 
 </html>
